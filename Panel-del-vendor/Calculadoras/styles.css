@@ -1,0 +1,263 @@
+/* Variables CSS para facilitar cambios de color */
+:root {
+    --primary-color: #3f51b5; /* Azul oscuro, serio y profesional */
+    --accent-color: #ff5722; /* Naranja/terracota sutil para detalles */
+    --background-color: #f4f6f8; /* Gris muy claro para el fondo */
+    --card-background: #ffffff; /* Blanco puro para la calculadora */
+    --text-color-dark: #333333; /* Texto oscuro para legibilidad */
+    --text-color-light: #555555; /* Texto un poco más claro */
+    --border-color: #e0e0e0; /* Gris claro para bordes */
+    --success-color: #4CAF50; /* Verde para mensajes de éxito */
+    --error-color: #f44336; /* Rojo para mensajes de error */
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra un poco más pronunciada al hacer hover */
+}
+
+/* Reset básico para consistencia en navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Fuente profesional y legible */
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    display: flex; /* Para centrar el contenedor principal */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    padding: 20px; /* Espaciado general */
+    line-height: 1.6;
+}
+
+/* Contenedor principal de la calculadora */
+.calculatorcontainer {
+    background-color: var(--card-background);
+    padding: 35px;
+    border-radius: 12px; /* Bordes ligeramente más redondeados */
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    max-width: 450px; /* Ancho máximo para mantener el diseño limpio */
+    text-align: center;
+    display: grid; /* Usamos Grid para organizar los elementos */
+    gap: 20px; /* Espacio entre los elementos del grid */
+    align-items: center; /* Alinea verticalmente los elementos en sus celdas */
+    justify-items: center; /* Alinea horizontalmente los elementos en sus celdas */
+    /* Grid específico para una mejor distribución */
+    grid-template-columns: 1fr; /* Una sola columna para todos los elementos */
+}
+
+
+/* Títulos principales */
+.calculatorcontainer h1 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+/* Subtítulos de los campos */
+.calculatorcontainer h3 {
+    color: var(--text-color-light);
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: -10px; /* Ajuste para acercar al input */
+    text-align: center; /* Centrar el texto del subtítulo */
+    width: 100%; /* Asegura que ocupe todo el ancho para centrado */
+}
+
+/* Estilo para inputs y select */
+.costosinput,
+.margeninput,
+.ivaselect,
+.envioscostosinput,
+.costoEInput,
+.montoMinimoInput{
+    width: calc(100% - 40px); /* Ancho casi completo con padding */
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.05em;
+    color: var(--text-color-dark);
+    outline: none; /* Quitar el contorno predeterminado al enfocar */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+    appearance: none; /* Elimina estilos por defecto en select para mayor consistencia */
+}
+
+.costosinput:focus,
+.margeninput:focus,
+.ivaselect:focus,
+.costoEInput:focus,
+.montoMinimoInput:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 34, 229, 0.2); /* Sombra suave al enfocar */
+}
+
+/* Estilo para el select, incluyendo una flecha personalizada */
+.ivaselect {
+    background-color: var(--card-background);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23555555' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 35px; /* Espacio para la flecha */
+}
+.selectlevel{
+    background-color: var(--card-background);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23555555' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 35px; /* Espacio para la flecha */
+}
+
+/* Botón Calcular */
+.calcularbutton {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-light);
+    width: fit-content; /* Se ajusta al contenido */
+}
+
+.calcularbutton:hover {
+    background-color: #303f9f; /* Un tono más oscuro al pasar el mouse */
+    transform: translateY(-2px); /* Pequeño levantamiento */
+    box-shadow: var(--shadow-hover);
+}
+
+.calcularbutton:active {
+    transform: translateY(0); /* Vuelve a la posición original al hacer clic */
+    box-shadow: none;
+}
+
+/* Mensaje de error/información */
+.mess {
+    color: var(--error-color);
+    font-weight: 500;
+    min-height: 20px; /* Para evitar saltos de layout cuando el mensaje desaparece */
+}
+
+/* Estilo para los resultados (h2) */
+.ventapublica,
+.ivaresultado,
+.comisiones,
+.ganancia,.gananciabruta,.precioFinal {
+    color: var(--text-color-dark);
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 5px;
+    padding-bottom: 5px; /* Espacio entre resultados */
+    border-bottom: 1px dashed var(--border-color); /* Línea punteada para separar */
+    width: 100%;
+    text-align: center;
+}
+
+.ganancia,.gananciabruta {
+    color: var(--success-color); /* Color verde para la ganancia neta */
+    border-bottom: none; /* Eliminar la línea para la última ganancia */
+    margin-bottom: 15px; /* Más espacio debajo de la ganancia final */
+}
+
+
+
+/* Estilo para el párrafo de asesoría SAT */
+.calculatorcontainer p:last-child {
+    font-size: 0.9em;
+    color: var(--text-color-light);
+    margin-top: 10px;
+}
+
+.calculatorcontainer p:last-child a {
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.calculatorcontainer p:last-child a:hover {
+    color: var(--accent-color); /* Cambio de color al pasar el mouse */
+    text-decoration: underline;
+}
+
+/* Animaciones sutiles */
+
+/* Animación de entrada para el contenedor */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.calculatorcontainer {
+    animation: fadeInScale 0.5s ease-out forwards;
+}
+
+/* Animación para los resultados al actualizarse */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplica la animación cada vez que los resultados se actualizan */
+/* Esto requiere que JavaScript añada/elimine una clase, o simplemente los resultados se actualicen y la transición sea suave */
+/* Para una animación más notoria al actualizar, podrías usar JS para añadir una clase temporal */
+.ventapublica,
+.ivaresultado,
+.comisiones,
+.ganancia {
+    transition: color 0.3s ease, border-color 0.3s ease; /* Transición para cambios de color/borde */
+    /* Puedes añadir la animación slideInUp si JavaScript añade una clase 'show-result' */
+    /* Por ejemplo: .show-result { animation: slideInUp 0.3s ease-out; } */
+}
+
+/* Efectos al pasar el ratón sobre los inputs */
+input[type="number"]:hover,
+select:hover {
+    border-color: var(--primary-color);
+}
+
+/* Estilos para el texto de sugerencia en los inputs */
+input::placeholder {
+    color: #a0a0a0;
+    font-size: 0.95em;
+}
+
+/* Media Queries para Responsividad (Opcional, pero recomendado) */
+@media (max-width: 600px) {
+    .calculatorcontainer {
+        padding: 25px;
+        border-radius: 8px;
+    }
+    .calculatorcontainer h1 {
+        font-size: 1.6em;
+    }
+    .costosinput,
+    .margeninput,
+    .ivaselect,
+    .calcularbutton {
+        width: 100%; /* Ocupar todo el ancho en pantallas pequeñas */
+    }
+}
+
+.hidden{
+    display: none;
+}

@@ -1,0 +1,502 @@
+
+/* Variables CSS (opcional, pero útil para mantener consistencia) */
+:root {
+    --primary-color: #3f51b5; /* Azul oscuro, serio y profesional */
+    --primary-hover-color: #303f9f;
+    --accent-color: #ff5722; /* Naranja/terracota sutil para detalles */
+    --accent-hover-color: #e64a19; /* Naranja más oscuro para hover */
+    --background-color: #f4f6f8; /* Gris muy claro para el fondo */
+    --card-background: #ffffff; /* Blanco puro para el formulario */
+    --text-color-dark: #333333; /* Texto oscuro para legibilidad */
+    --text-color-light: #555555; /* Texto un poco más claro */
+    --border-color: #e0e0e0; /* Gris claro para bordes */
+    --success-color: #4CAF50; /* Verde para mensajes de éxito */
+    --error-color: #f44336; /* Rojo para mensajes de error */
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra un poco más pronunciada al hacer hover */
+}
+
+/* Reset básico para consistencia en navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea arriba para formularios largos */
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Contenedor principal del formulario */
+.form-container { /* Nueva clase para el div #formNewProduct */
+    background-color: var(--card-background);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    max-width: 550px; /* Un poco más ancho para el formulario */
+    display: flex; /* Usamos flexbox para organizar los elementos */
+    flex-direction: column;
+    gap: 20px; /* Espacio entre los grupos de formulario */
+    text-align: center; /* Centrar textos por defecto */
+}
+
+.form-container h1 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.form-group { /* Agrupa el label y el input/select/textarea */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los labels a la izquierda */
+    gap: 8px; /* Espacio entre label y su input */
+    width: 100%;
+}
+
+.form-group label {
+    color: var(--text-color-dark);
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: left; /* Asegura que el texto del label esté a la izquierda */
+}
+
+/* Estilo para inputs, textarea y select */
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.05em;
+    color: var(--text-color-dark);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--background-color); /* Fondo ligeramente diferente para inputs */
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="number"]:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2); /* Sombra suave al enfocar (usando primary-color) */
+}
+
+/* Estilo para el textarea específico */
+textarea {
+    resize: vertical; /* Permitir redimensionar solo verticalmente */
+    min-height: 80px; /* Altura mínima para la descripción */
+}
+
+/* Estilo para select, incluyendo una flecha personalizada */
+.form-container select {
+    appearance: none; /* Elimina estilos por defecto */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23555555' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 35px; /* Espacio para la flecha */
+    background-color: var(--card-background); /* Fondo del select */
+}
+
+
+/* Estilos para los botones */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-light);
+    width: fit-content; /* Se ajusta al contenido */
+    align-self: center; /* Centrar los botones */
+    margin-top: 5px; /* Pequeño margen superior */
+}
+
+.btn-primary { /* Botón principal, ej. "Escanear por cámara" */
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary { /* Botón secundario, ej. "Usar Gemini" */
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-submit { /* Botón final de envío, ej. "Publicar Producto" */
+    background-color: var(--success-color);
+    color: white;
+    padding: 15px 35px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    background-color: #388e3c; /* Un verde más oscuro */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* Sección del escáner (para agrupar visualmente) */
+.scanner-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    border-top: 1px dashed var(--border-color); /* Separador visual */
+    border-bottom: 1px dashed var(--border-color);
+}
+
+/* Estilo para el título del escáner dentro de la sección */
+.scanner-section .TitleForm {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Sugerencia de texto para el escáner */
+.scanner-tip {
+    font-size: 0.9em;
+    color: var(--text-color-light);
+    margin-bottom: 10px;
+}
+
+
+/* ------------------------------------------------------------------------------------ */
+/* ESTILOS ESPECÍFICOS PARA HTML5-QRCODE (dentro de #reader) - Mantenemos los que ya tenías */
+/* ------------------------------------------------------------------------------------ */
+
+/* Ajustes para el contenedor principal de tu componente scannerAppContainer */
+#scannerAppContainer { /* Esta es la clase que le pusiste en JS, ahora también en CSS */
+    animation: fadeInScale 0.5s ease-out forwards;
+    /* La clase .form-container ya tiene padding y shadow */
+    width: 100%;
+    max-width: 500px; /* Un ancho máximo para el escáner dentro del formulario */
+    margin: 0 auto; /* Centrar el escáner */
+}
+
+/* El componente html5-qrcode renderiza un div con id="reader" dentro de scannerAppContainer */
+#reader {
+    width: 100% !important;
+    max-width: 500px !important; /* Asegura que no sea más grande que su contenedor */
+    margin: 0 auto !important;
+    background-color: var(--card-background) !important;
+    border-radius: 15px !important;
+    padding: 0px !important;
+    border: none !important;
+    box-shadow: var(--shadow-light) !important;
+    overflow: visible !important;
+    position: relative !important;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+/* Div principal que contiene el video y el dashboard, inyectado por html5-qrcode */
+#reader > div[style] {
+    width: 100% !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: transparent !important;
+}
+
+/* Contenedor del área de escaneo (donde está el video y el canvas) */
+#reader__scan_region {
+    width: 100% !important;
+    min-height: 250px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-color: #333 !important; /* Tu color de fondo para la cámara */
+    border-radius: 15px !important;
+    padding: 0 !important;
+}
+
+/* El elemento de video de la cámara */
+#reader__scan_region video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    max-height: 400px;
+    display: block !important;
+    border-radius: 15px !important;
+}
+
+/* El cuadro de escaneo (la región sombreada dentro de la cámara) */
+#qr-shaded-region {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* El Dashboard: Contenedor principal de los controles (select, botones) */
+#reader__dashboard {
+    width: 100% !important;
+    padding: 15px 0px !important;
+    background-color: var(--card-background) !important;
+    border-radius: 10px !important;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* La sección donde están el selector de cámara y los botones de iniciar/detener */
+#reader__dashboard_section {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilo para los botones del escáner (los override del HTML5-QRCode) */
+#html5-qrcode-button-camera-permission,
+#html5-qrcode-button-camera-stop,
+#html5-qrcode-button-camera-start,
+#html5-qrcode-button-file-selection {
+    background-color: var(--primary-color) !important; /* Un color coherente con tu tema */
+    color: white !important;
+    padding: 14px 30px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-light);
+    width: fit-content !important;
+    max-width: 250px;
+    margin: 5px;
+}
+
+#html5-qrcode-button-camera-permission:hover,
+#html5-qrcode-button-camera-stop:hover,
+#html5-qrcode-button-camera-start:hover,
+#html5-qrcode-button-file-selection:hover {
+    background-color: var(--primary-hover-color) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Estilo para el selector de cámara */
+#html5-qrcode-select-camera {
+    background-color: var(--background-color) !important; /* Un color que combine con los inputs */
+    color: var(--text-color-dark) !important;
+    padding: 12px 15px !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    font-size: 1em !important;
+    cursor: pointer;
+    width: 80% !important;
+    max-width: 300px;
+    margin: 5px;
+}
+
+#html5-qrcode-select-camera:hover {
+    border-color: var(--primary-color) !important;
+}
+
+/* El enlace "Scan an Image File" o "Choose file" */
+#html5-qrcode-anchor-scan-type-change {
+    color: var(--accent-color) !important; /* Color de acento para el enlace */
+    font-size: 0.9em;
+    margin: 5px 0;
+    display: inline-block !important;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+#html5-qrcode-anchor-scan-type-change:hover {
+    color: var(--accent-hover-color) !important;
+}
+
+/* Ocultar elementos específicos de html5-qrcode que no quieres ver */
+#html5-qrcode-private-filescan-input,
+#reader__dashboard_section_csr > div[style*="margin: auto auto 10px; width: 80%; max-width: 600px; border: 6px dashed rgb(235, 235, 235); padding: 10px;"],
+#reader > div > div[style*="position: absolute; top: 10px; right: 10px;"],
+#reader > div > img[alt="Info icon"] {
+    display: none !important;
+}
+
+/* El texto "Requesting camera permissions..." */
+#reader__header_message {
+    display: block !important;
+    color: var(--text-color-light) !important;
+    font-size: 0.9em !important;
+    margin: 5px auto !important;
+    text-align: center !important;
+}
+
+/* Mensaje de "Scanner paused" */
+#reader__scan_region > div[style*="Scanner paused"] {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: 600;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+    z-index: 10;
+    border-radius: 15px !important; /* Heredar el redondeado de la cámara */
+}
+
+/* Clase para ocultar elementos - ¡CRUCIAL! */
+.hidden {
+    display: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    line-height: 0 !important; /* Para asegurar que el texto no genere altura */
+    visibility: hidden !important; /* Asegura que no sea interactuable */
+    opacity: 0 !important; /* Para transiciones suaves si se quisiera animar */
+}
+
+
+/* Animación de entrada para el contenedor principal */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+.form-container {
+    animation: fadeInScale 0.5s ease-out forwards;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    body { padding: 15px; }
+    .form-container {
+        padding: 25px;
+        border-radius: 10px;
+        max-width: 95%;
+    }
+    .form-container h1 { font-size: 1.8em; margin-bottom: 10px; }
+    .form-group label { font-size: 1em; }
+    .btn { padding: 10px 20px; font-size: 1em; }
+    .btn-submit { padding: 12px 25px; font-size: 1.1em; }
+
+    /* Ajustes para el escáner */
+    #reader {
+        min-height: 250px;
+        border-radius: 10px !important;
+    }
+    #reader__scan_region,
+    #reader__scan_region video {
+        border-radius: 10px !important;
+    }
+    #reader__dashboard {
+        padding: 10px 0px !important;
+        border-radius: 8px !important;
+    }
+    #html5-qrcode-button-camera-permission,
+    #html5-qrcode-button-camera-stop,
+    #html5-qrcode-button-camera-start,
+    #html5-qrcode-button-file-selection {
+        padding: 12px 20px !important;
+        font-size: 1em !important;
+        width: 90% !important;
+        max-width: none;
+    }
+    #html5-qrcode-select-camera {
+        padding: 10px 12px !important;
+        font-size: 0.95em !important;
+        width: 90% !important;
+        max-width: none;
+    }
+    #html5-qrcode-anchor-scan-type-change {
+        font-size: 0.85em;
+    }
+    .scanner-tip { font-size: 0.8em; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 10px; }
+    .form-container {
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .form-container h1 { font-size: 1.6em; margin-bottom: 8px; }
+    .form-group label { font-size: 0.95em; }
+    .btn { padding: 8px 15px; font-size: 0.9em; }
+    .btn-submit { padding: 10px 20px; font-size: 1em; }
+
+    /* Ajustes para el escáner */
+    #reader {
+        min-height: 200px;
+        border-radius: 8px !important;
+    }
+    #reader__scan_region,
+    #reader__scan_region video {
+        border-radius: 8px !important;
+    }
+    #reader__dashboard {
+        padding: 8px 0px !important;
+        border-radius: 6px !important;
+    }
+    #html5-qrcode-button-camera-permission,
+    #html5-qrcode-button-camera-stop,
+    #html5-qrcode-button-camera-start,
+    #html5-qrcode-button-file-selection {
+        padding: 10px 15px !important;
+        font-size: 0.9em !important;
+        width: 95% !important;
+    }
+    #html5-qrcode-select-camera {
+        padding: 8px 10px !important;
+        font-size: 0.9em !important;
+        width: 95% !important;
+    }
+    #html5-qrcode-anchor-scan-type-change {
+        font-size: 0.8em;
+    }
+}

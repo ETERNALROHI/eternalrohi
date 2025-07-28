@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Rohi</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Opcional: Fuentes de Google Fonts para el toque vintage -->
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Lora:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header id="mainHeroNavBarContainer">
+        <nav class="vintage-navbar">
+            <div class="navbar-brand">
+                <a href="#" class="navbar-logo-text">Eternal Rohi</a>
+            </div>
+            
+            <div class="navbar-search-desktop">
+                <input type="text" id="BuscadorDesktop" placeholder="Buscar una tienda, vendedor o producto">
+                <button class="search-btn">Buscar</button>
+            </div>
+
+            <div class="navbar-toggle" id="navbarToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="navbar-links" id="navbarLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#tiendas">Tiendas</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <!-- Botones de autenticación / Bienvenida -->
+                <li id="auth-buttons-container">
+                    <button class="nav-btn-login" id="showLoginModal">Acceder / Registrarse</button>
+                    <!-- Estos se mostrarán/ocultarán con JS -->
+                    <span id="welcome-message" class="hidden nav-welcome-message"></span>
+                    <button class="nav-btn-register hidden" id="logoutButton">Cerrar Sesión</button>
+                </li>
+                
+                <li class="mobile-search-item">
+                    <div class="navbar-search-mobile">
+                        <input type="text" id="BuscadorMobile" placeholder="Buscar una tienda, vendedor o producto">
+                        <button class="search-btn">Buscar</button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="mainContent">
+        <section style="height: 800px; display: flex; justify-content: center; align-items: center; background-color: var(--vintage-beige);">
+            <p style="font-size: 2em; color: var(--text-color-dark);">Contenido de la Página Principal</p>
+        </section>
+
+        <!-- MODAL DE AUTENTICACIÓN -->
+        <div id="authModal" class="auth-modal hidden">
+            <div class="auth-modal-content">
+                <span class="close-button" id="closeModalButton">&times;</span>
+                <div class="auth-form-container">
+                    <!-- Formulario de Login -->
+                    <form id="loginForm" class="auth-form">
+                        <h2>Iniciar Sesión</h2>
+                        <div class="form-group">
+                            <label for="loginEmail">Correo Electrónico:</label>
+                            <input type="email" id="loginEmail" placeholder="tu@ejemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña:</label>
+                            <input type="password" id="loginPassword" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Acceder</button>
+                        <p class="auth-error-message" id="loginErrorMessage"></p>
+                        <p class="auth-switch-link">¿No tienes cuenta? <a href="#" id="showRegisterForm">Regístrate aquí</a></p>
+                        <p class="auth-forgot-password"><a href="#" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a></p>
+                        <div class="auth-divider"><span>O</span></div>
+                        <button type="button" class="btn btn-google" id="googleSignInButton">
+                            <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google icon"> Iniciar con Google
+                        </button>
+                        <button type="button" class="btn btn-facebook" id="facebookSignInButton">
+                            <img src="https://img.icons8.com/color/16/000000/facebook-new.png" alt="Facebook icon"> Iniciar con Facebook
+                        </button>
+                    </form>
+
+                    <!-- Formulario de Registro (inicialmente oculto) -->
+                    <form id="registerForm" class="auth-form hidden">
+                        <h2>Registrarse</h2>
+                        <div class="form-group">
+                            <label for="registerEmail">Correo Electrónico:</label>
+                            <input type="email" id="registerEmail" placeholder="tu@ejemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Contraseña:</label>
+                            <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirmar Contraseña:</label>
+                            <input type="password" id="confirmPassword" placeholder="Repite tu contraseña" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrarme</button>
+                        <p class="auth-error-message" id="registerErrorMessage"></p>
+                        <p class="auth-switch-link">¿Ya tienes cuenta? <a href="#" id="showLoginForm">Inicia Sesión</a></p>
+                        <div class="auth-divider"><span>O</span></div>
+                        <button type="button" class="btn btn-google" id="googleSignUpButton">
+                            <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google icon"> Registrarse con Google
+                        </button>
+                        <button type="button" class="btn btn-facebook" id="facebookSignUpButton">
+                            <img src="https://img.icons8.com/color/16/000000/facebook-new.png" alt="Facebook icon"> Registrarse con Facebook
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Tus scripts existentes -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js"></script>
+    <!-- El script del escáner no es necesario en la página de inicio, se puede quitar o comentar -->
+    <!-- <script src="./componets/scaner.js"></script> --> 
+    <script type="module" src="script.js"></script> 
+</body>
+</html>

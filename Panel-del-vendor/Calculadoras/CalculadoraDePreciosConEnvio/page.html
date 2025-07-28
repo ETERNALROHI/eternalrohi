@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Calculadora de pecios con envio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+
+    <body>
+        <div class="calculatorcontainer">
+            <h1>Calculo de Precios(Con envio)</h1>
+            <p>Este es una calculadora util para tener una comprensión mas precisa de sus precios en nuestra plataforma, impuestos a pagar, costos de envio base a un monto minimo para obtenerlo</p>
+            
+            <h3>Costo de produccion total</h3>
+            <input type="number" placeholder="Cuanto le cuesta producir/comprar C/U" class="costosinput">
+            <h3>Margen a ganar(Se pondra en porcentaje automaticamente)</h3>
+            <input type="number" placeholder="Cuanto parcentaje desea ganar" class="margeninput">
+            <h3>Costo de envio(Promedio por paqueteria)</h3>
+            <input type="number" placeholder="Costo aproximado o estimado de envio" class="costoEInput">
+            <h3>Monto minimo de compra total para conseguir el beneficio de envio gratis</h3>
+            <input type="number" placeholder="Que cantidad minima debe gastar el cliente para envio gratis" class="montoMinimoInput">
+            <h3>IVA(Calculo recomendado)</h3>
+            <select name="Pago del IVA" class="ivaselect">
+                <option value="0">No calcular</option>
+                <option value="0.05">Regimen pequeño contribuyente(5%)</option>
+                <option value="0.12">Regimen general(12%)</option>
+            </select>
+            <button class="calcularbutton">Calcular</button>
+            <p class="mess"></p>
+            <h2 class="ventapublica">Precio Normal:</h2>
+            <h2 class="precioFinal">Precio Final(Publica)</h2>
+            <h2 class="ivaresultado">IVA</h2>
+            <h2 class="comisiones">Comisiones(7.5%)</h2>
+            <h2 class="gananciabruta">Ganancia bruta</h2>
+            <h2 class="ganancia">Ganancia Neta</h2>
+            <p style="color: black;">Para mejor asesoria sobre los impuesto consulte a la <a href="https://portal.sat.gob.gt/portal/soporte-chat/" style="text-decoration: none;">SAT</a></p>
+        </div>
+        
+        
+        <script src="calculatorF.js"></script>
+    </body>
+    
+</html>

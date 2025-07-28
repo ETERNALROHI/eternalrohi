@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Dinámica</title>
+    <style>
+        /* Algunos estilos básicos para que la tabla se vea bien */
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <div id="tabla-contenedor">
+        </div>
+
+    <script>
+        // Aquí irá tu código JavaScript
+        const productos = [
+            { id: 'p1', nombre: 'Camisa', precio: 25.00, categoria: 'Ropa' },
+            { id: 'p2', nombre: 'Pantalón', precio: 40.50, categoria: 'Ropa' },
+            { id: 'p3', nombre: 'Zapatos', precio: 60.00, categoria: 'Calzado' }
+        ];
+
+        function generarTablaProductos(data, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ''; // Limpiar el contenedor por si ya hay algo
+
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            // Crear encabezados de la tabla (<th>)
+            const headerRow = document.createElement('tr');
+            const headers = ['ID', 'Nombre', 'Precio', 'Categoría', 'Acciones']; // Puedes personalizar esto
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Rellenar el cuerpo de la tabla (<tbody>) con los datos
+            data.forEach(producto => {
+                const row = document.createElement('tr');
+                row.id = `producto-${producto.id}`; // Un ID útil para cada fila
+
+                // Celda ID
+                const idCell = document.createElement('td');
+                idCell.textContent = producto.id;
+                row.appendChild(idCell);
+
+                // Celda Nombre
+                const nombreCell = document.createElement('td');
+                nombreCell.textContent = producto.nombre;
+                row.appendChild(nombreCell);
+
+                // Celda Precio
+                const precioCell = document.createElement('td');
+                precioCell.textContent = `Q${producto.precio.toFixed(2)}`; // Formatear el precio
+                row.appendChild(precioCell);
+
+                // Celda Categoría
+                const categoriaCell = document.createElement('td');
+                categoriaCell.textContent = producto.categoria;
+                row.appendChild(categoriaCell);
+
+                // Celda Acciones (ej. botón de editar/eliminar)
+                const accionesCell = document.createElement('td');
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Editar';
+                editButton.onclick = () => {
+                    console.log('Editar producto:', producto.id);
+                    // Aquí podrías abrir un modal de edición, por ejemplo
+                };
+                accionesCell.appendChild(editButton);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Eliminar';
+                deleteButton.onclick = () => {
+                    console.log('Eliminar producto:', producto.id);
+                    // Lógica para eliminar el producto de tus datos y del DOM
+                    row.remove(); // Elimina la fila del DOM
+                };
+                accionesCell.appendChild(deleteButton);
+                
+                row.appendChild(accionesCell);
+
+                tbody.appendChild(row);
+            });
+            tbody.addEventListener('click', (event) => {
+                // Verificar si el clic fue en una celda (<td>)
+                if (event.target.tagName === 'TD') {
+                    const clickedCell = event.target;
+                    const rowIndex = clickedCell.parentNode.rowIndex; // Obtiene el índice de la fila
+                    const colIndex = clickedCell.cellIndex; // Obtiene el índice de la columna
+                    const cellValue = clickedCell.textContent;
+
+                    console.log(`Clic en la celda [Fila: ${rowIndex}, Columna: ${colIndex}]. Valor: ${cellValue}`);
+                }
+            });
+
+            table.appendChild(tbody);
+            container.appendChild(table);
+        }
+
+        // Llamar a la función para generar la tabla cuando el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            generarTablaProductos(productos, 'tabla-contenedor');
+        });
+
+    </script>
+</body>
+</html>

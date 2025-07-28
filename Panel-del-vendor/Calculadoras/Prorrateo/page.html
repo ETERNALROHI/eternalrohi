@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prorrateo de Costos</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="calculator-container"> <h2>Calculadora de Prorrateo de Costos</h2> <div class="mode-selection"> <h3>Seleccione el Modo de Cálculo:</h3>
+                <select id="modeInfo" class="select-mode"> <option value="Global">Cálculo de gasto de manera global</option>
+                    <option value="Unitario">Cálculo de gasto de manera unitaria por producto</option>
+                </select>
+                <p id="descripcionMode" style="color: brown;">Descripción: Util para productos con costos/gasto iguales o similares <br>(Borra solo las casillas del producto indivivual automaticamente)</p>
+                <p style="color: cadetblue;">Ambos metodos pueden ser utilizados a la vez si es requerido</p>
+            </div>
+
+            <form id="infoData" class="form-inputs"> <h3>Información de la Compra(General):</h3>
+                <input type="number" placeholder="Costo Total de la Factura (Productos)" id="totalBillCost" step="0.01"min="0">
+                <input type="number" placeholder="Costo Total de Flete/Transporte" id="totalFreightCost" step="0.01"min="0" value="0">
+                <input type="number" placeholder="Porcentaje Total de Derechos Aduanales" id="totalCustomsPercentage" step="0.01"min="0"value="0">
+                <input type="number" placeholder="Costo Total de Seguros" id="totalInsuranceCost" step="0.01"min="0"value="0">
+                <input type="number" placeholder="Otros Gastos de Importación/Compra" id="otherCosts" step="0.01 "min="0"value="0">
+                <input type="number" placeholder="Margen a ganar (%)" id="marginalG" step="0.01" min="0">
+                
+            </form>
+
+            <div class="product-input-section"> <h3>Datos del Producto Individual:</h3>
+                <input type="text" placeholder="Nombre de producto" id="nameproduct" >
+                <input type="number" placeholder="Unidades del producto" id="Uproduct" step="1"min="0">
+                <input type="number" placeholder="Costo base del producto (C/U)" id="costB" step="0.01" min="0">
+                <button type="button" id="addProductBtn" class="add-button">Añadir Producto</button>
+                <p id="errorMG" class="hidden" style="color: red;">Los datos estan incorrectos(menores que cero o espacios sin rellenar)</p>
+                </div>
+
+            <div class="table-container"> <h3>Detalle de Productos y Costos:</h3>
+                <table class="product-table"> <thead>
+                        <tr>
+                            <td class="list-item">NO#</td>
+                            <td class="list-item">Nombre</td>
+                            <td class="list-item">Unidades</td>
+                            <td class="list-item">Costo Base C/U</td>
+                            <td class="list-item">Costo Total Productos</td> <td class="list-item">Margen Ganancia (%)</td>
+                            <td class="list-item">Costo Unitario Prorrateado Final</td> <td class="list-item">Precio de Venta Sugerido C/U</td> </tr>
+                    </thead>
+                    <tbody id="dataInfo">
+                    </tbody>
+                </table>
+                <p id="totalCostDisplay">Costo Total de la Compra (Prorrateado): $0.00</p>
+            </div>
+            <div class="messages">
+                <p class="mess"></p> </div>
+        </div>
+        <script src="funtion.js"></script>
+    </body>
+</html>

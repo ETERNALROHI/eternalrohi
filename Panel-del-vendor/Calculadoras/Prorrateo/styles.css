@@ -1,0 +1,262 @@
+/* Variables CSS para facilitar cambios de color */
+:root {
+    --primary-color: #3f51b5; /* Azul oscuro, serio y profesional */
+    --accent-color: #ff5722; /* Naranja/terracota sutil para detalles */
+    --background-color: #f4f6f8; /* Gris muy claro para el fondo */
+    --card-background: #ffffff; /* Blanco puro para la calculadora */
+    --text-color-dark: #333333; /* Texto oscuro para legibilidad */
+    --text-color-light: #555555; /* Texto un poco más claro */
+    --border-color: #e0e0e0; /* Gris claro para bordes */
+    --success-color: #4CAF50; /* Verde para mensajes de éxito */
+    --error-color: #f44336; /* Rojo para mensajes de error */
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra un poco más pronunciada al hacer hover */
+}
+
+/* Reset básico para consistencia en navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Fuente profesional y legible */
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    display: flex; /* Para centrar el contenedor principal */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    padding: 20px; /* Espaciado general */
+    line-height: 1.6;
+}
+
+/* Contenedor principal de la calculadora */
+.calculator-container { /* Cambiado de .calculatorcontainer a .calculator-container */
+    background-color: var(--card-background);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    max-width: 900px; /* Más ancho para acomodar la tabla */
+    text-align: center;
+    display: flex; /* Usamos flexbox para organizar secciones verticalmente */
+    flex-direction: column;
+    gap: 25px; /* Espacio entre secciones */
+    animation: fadeInScale 0.5s ease-out forwards;
+}
+
+/* Títulos principales */
+.calculator-container h2 { /* Cambiado de h1 a h2 */
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 2em; /* Más grande para el título principal */
+    font-weight: 700;
+}
+
+/* Subtítulos de sección (h3) */
+.calculator-container h3 {
+    color: var(--text-color-light);
+    font-size: 1.15em;
+    font-weight: 600;
+    margin-bottom: 15px; /* Espacio debajo del subtítulo */
+    text-align: center;
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Estilo para los divs de selección de modo y formularios */
+.mode-selection,
+.form-inputs,
+.product-input-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre inputs en los formularios */
+    align-items: center;
+}
+
+/* Estilo para inputs y select */
+.form-inputs input[type="number"],
+.form-inputs input[type="text"],
+.product-input-section input[type="number"],
+.product-input-section input[type="text"],
+.select-mode { /* Nuevo selector para el select de modo */
+    width: 100%; /* Ancho completo del contenedor padre */
+    max-width: 400px; /* Limita el ancho para que no sea demasiado largo */
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.05em;
+    color: var(--text-color-dark);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none; /* Elimina estilos por defecto en select */
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+.select-mode:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 34, 229, 0.2);
+}
+
+/* Estilo para el select, incluyendo una flecha personalizada */
+.select-mode {
+    background-color: var(--card-background);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23555555' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 35px; /* Espacio para la flecha */
+}
+
+/* Botón Añadir Producto */
+.add-button {
+    background-color: var(--accent-color); /* Color acento para el botón de añadir */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-light);
+    width: fit-content;
+    margin-top: 10px; /* Espacio superior */
+}
+
+.add-button:hover {
+    background-color: #d84315; /* Tono más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.add-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Estilos de la tabla */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+    margin-top: 20px;
+}
+
+.product-table { /* Renombrado de .table-list a .product-table */
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre celdas */
+    margin: 0 auto; /* Centrar la tabla */
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-light);
+    border-radius: 8px;
+}
+
+.product-table thead tr {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.product-table th,
+.product-table td { /* Cambiado de .list-item a th, td */
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9em;
+}
+
+.product-table tbody tr:nth-child(even) { /* Color de fondo alterno para filas */
+    background-color: #f9f9f9;
+}
+
+.product-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Mensajes de error/información */
+.messages {
+    min-height: 20px; /* Evita saltos de layout */
+    text-align: center;
+}
+
+.mess {
+    color: var(--error-color);
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* Display de costos totales al final de la tabla */
+#totalCostDisplay {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 20px;
+    text-align: right; /* Alineado a la derecha como un total */
+    padding-right: 15px; /* Espacio para no pegar al borde */
+}
+
+
+/* Clases de utilidad */
+.hidden {
+    display: none !important; /* Esconde el elemento completamente */
+}
+
+/* Animaciones sutiles */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para el texto de sugerencia en los inputs */
+input::placeholder {
+    color: #a0a0a0;
+    font-size: 0.95em;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .calculator-container {
+        padding: 25px;
+        border-radius: 8px;
+        gap: 15px;
+    }
+    .calculator-container h2 {
+        font-size: 1.8em;
+    }
+    .calculator-container h3 {
+        font-size: 1em;
+    }
+    .form-inputs input,
+    .product-input-section input,
+    .select-mode {
+        max-width: 100%; /* Ocupar todo el ancho en pantallas más pequeñas */
+        padding: 10px;
+    }
+    .add-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .product-table th,
+    .product-table td {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-container {
+        padding: 15px;
+    }
+    .product-table {
+        font-size: 0.75em; /* Reducir aún más la fuente de la tabla */
+    }
+}
