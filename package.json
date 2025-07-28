@@ -1,0 +1,24 @@
+{
+  "name": "eternalrohi",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo 'Build step complete. Files are ready for deployment.'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ETERNALROHI/eternalrohi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ETERNALROHI/eternalrohi/issues"
+  },
+  "homepage": "https://github.com/ETERNALROHI/eternalrohi#readme",
+  "description": "",
+  "dependencies": {
+    "firebase": "^12.0.0"
+  }
+}
