@@ -1,0 +1,279 @@
+
+
+/* --- :ROOT - Paleta de Colores y Fuentes (Consistente con la página principal) --- */
+:root {
+    --primary-color: #0A192F;      /* Azul marino profundo */
+    --secondary-color: #172A45;   /* Un azul ligeramente más claro */
+    --accent-color: #D4AF37;       /* Oro metálico para acentos */
+    --accent-hover-color: #E6C45C; /* Un oro más brillante para el hover */
+    --background-color: #F5F5F5;   /* Un blanco roto muy sutil */
+    --card-background: #FFFFFF;    /* Blanco puro para el formulario */
+    --text-color-dark: #333333;   /* Gris oscuro para texto principal */
+    --text-color-light: #767676;  /* Gris más claro para texto secundario */
+    --border-color: #DDDDDD;       /* Un borde muy suave */
+    --error-color: #D32F2F;        /* Rojo para mensajes de error */
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lora', serif;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* --- Estilos Generales --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* --- Contenedor Principal del Formulario --- */
+.form-container {
+    background-color: var(--card-background);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: fadeInScale 0.6s ease-out forwards;
+}
+
+.form-container h1 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+/* --- Elementos de Formulario (Inputs, Textarea, Select) --- */
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    background-color: #fafafa;
+    transition: all var(--transition-speed) ease;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+    background-color: #fff;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-container select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23333333' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    cursor: pointer;
+}
+
+/* --- Botones --- */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    width: fit-content;
+    align-self: flex-start;
+}
+
+#useCameraButton {
+    background-color: var(--primary-color);
+    color: white;
+    align-self: center;
+}
+#useCameraButton:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+#useGeminiDescripcion {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 8px 15px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+#useGeminiDescripcion:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#PublicarProducto {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    width: 100%;
+    padding: 16px;
+    font-size: 1.2em;
+    margin-top: 15px;
+}
+#PublicarProducto:hover {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* --- Sección del Escáner --- */
+.scanner-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 25px 0;
+    margin: 15px 0;
+    border-top: 1px dashed var(--border-color);
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.scanner-section .TitleForm {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 1.8em;
+}
+
+.scanner-section .TitleForm span {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.5em !important;
+    font-weight: 400;
+    color: var(--error-color);
+    margin-top: 5px;
+}
+
+#scannerAppContainer {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* --- Estilos para el Escáner (html5-qrcode) --- */
+#reader {
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: var(--shadow-light) !important;
+}
+
+#reader__scan_region {
+    background-color: #000 !important;
+    border-radius: var(--border-radius) !important;
+}
+
+#reader__dashboard {
+    background-color: transparent !important;
+}
+
+#html5-qrcode-button-camera-start,
+#html5-qrcode-button-camera-stop,
+#html5-qrcode-button-camera-permission {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: var(--border-radius) !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    padding: 12px 20px !important;
+    transition: all var(--transition-speed) ease !important;
+}
+
+#html5-qrcode-button-camera-start:hover,
+#html5-qrcode-button-camera-stop:hover,
+#html5-qrcode-button-camera-permission:hover {
+    background-color: var(--secondary-color) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium) !important;
+}
+
+#html5-qrcode-select-camera {
+    padding: 12px !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--border-radius) !important;
+    font-family: var(--font-body) !important;
+    background-color: #fafafa !important;
+    transition: all var(--transition-speed) ease !important;
+}
+
+#html5-qrcode-select-camera:focus {
+    outline: none !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2) !important;
+}
+
+#html5-qrcode-anchor-scan-type-change {
+    color: var(--accent-color) !important;
+    text-decoration: none !important;
+}
+#html5-qrcode-anchor-scan-type-change:hover {
+    color: var(--accent-hover-color) !important;
+}
+
+/* --- Animaciones y Clases de Utilidad --- */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Diseño Responsivo (Móviles) --- */
+@media (max-width: 768px) {
+    body { padding: 20px 10px; }
+    .form-container {
+        padding: 25px;
+    }
+    .form-container h1 {
+        font-size: 2em;
+    }
+}

@@ -1,7 +1,6 @@
-
 {
   "hosting": {
-    "public": "public", 
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,12 +11,21 @@
         "source": "**",
         "destination": "/index.html"
       }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cross-Origin-Opener-Policy",
+            "value": "same-origin-allow-popups"
+          },
+          {
+            "key": "Cross-Origin-Embedder-Policy",
+            "value": "require-corp"
+          }
+        ]
+      }
     ]
-  },
-  "apphosting": { 
-    "source": ".", 
-    "build": {
-      "command": "npm ci && npm run build" 
-    }
   }
 }

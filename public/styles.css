@@ -1,0 +1,404 @@
+/* --- :ROOT - Paleta de Colores y Fuentes --- */
+/* Definimos todas nuestras variables aquí para un control fácil del tema */
+:root {
+    --primary-color: #0A192F;      /* Azul marino profundo */
+    --secondary-color: #172A45;   /* Un azul ligeramente más claro */
+    --accent-color: #D4AF37;       /* Oro metálico para acentos */
+    --accent-hover-color: #E6C45C; /* Un oro más brillante para el hover */
+    --background-color: #F5F5F5;   /* Un blanco roto muy sutil */
+    --card-background: #FFFFFF;    /* Blanco puro para tarjetas y modal */
+    --text-color-dark: #333333;   /* Gris oscuro para texto principal */
+    --text-color-light: #767676;  /* Gris más claro para texto secundario */
+    --border-color: #DDDDDD;       /* Un borde muy suave */
+    --error-color: #D32F2F;        /* Rojo para mensajes de error */
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lora', serif;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* --- Estilos Generales de la Página --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+}
+
+/* --- Barra de Navegación (Header) --- */
+.vintage-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow-medium);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-logo-text {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 25px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding-bottom: 5px;
+    position: relative;
+    transition: color var(--transition-speed) ease;
+}
+
+.navbar-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width var(--transition-speed) ease;
+}
+
+.navbar-links a:hover {
+    color: var(--accent-color);
+}
+
+.navbar-links a:hover::after {
+    width: 100%;
+}
+
+/* --- Buscador de la Navbar --- */
+.navbar-search-desktop,
+.navbar-search-mobile {
+    display: flex;
+    align-items: center;
+}
+
+#BuscadorDesktop,
+#BuscadorMobile {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--accent-color);
+    border-right: none;
+    padding: 10px 15px;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    transition: all var(--transition-speed) ease;
+}
+
+#BuscadorDesktop::placeholder,
+#BuscadorMobile::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+#BuscadorDesktop:focus,
+#BuscadorMobile:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+.search-btn {
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 15px;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all var(--transition-speed) ease;
+}
+
+.search-btn:hover {
+    background-color: var(--accent-hover-color);
+    transform: scale(1.05);
+}
+
+
+/* --- Botones de Autenticación de la Navbar --- */
+.nav-btn-login {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 8px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-speed) ease;
+}
+
+.nav-btn-login:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+}
+
+.nav-welcome-message {
+    color: #FFFFFF;
+    font-weight: 400;
+    margin-right: 15px;
+}
+
+.nav-welcome-message strong {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+#logoutButton {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 8px 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+#logoutButton:hover {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+}
+
+
+/* --- Modal de Autenticación --- */
+.hidden {
+    display: none !important;
+}
+
+.auth-modal {
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(10, 25, 47, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+}
+
+.auth-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.auth-modal-content {
+    background-color: var(--card-background);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+.auth-modal.visible .auth-modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px; right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color-light);
+    cursor: pointer;
+    transition: transform var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.close-button:hover {
+    color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+/* --- Formularios del Modal --- */
+.auth-form h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.auth-form label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: all var(--transition-speed) ease;
+}
+
+.auth-form input[type="email"]:focus,
+.auth-form input[type="password"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.auth-error-message {
+    color: var(--error-color);
+    font-size: 0.9em;
+    min-height: 20px;
+    text-align: center;
+}
+
+.auth-switch-link a, .auth-forgot-password a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-divider {
+    display: flex; align-items: center; text-align: center;
+    margin: 25px 0; color: var(--text-color-light);
+}
+.auth-divider::before, .auth-divider::after {
+    content: ''; flex: 1; border-bottom: 1px solid var(--border-color);
+}
+.auth-divider:not(:empty)::before { margin-right: 1em; }
+.auth-divider:not(:empty)::after { margin-left: 1em; }
+
+.btn-google, .btn-facebook {
+    background-color: white;
+    color: var(--text-color-dark);
+    border: 1px solid var(--border-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.btn-google:hover, .btn-facebook:hover {
+    border-color: var(--text-color-dark);
+    background-color: #f9f9f9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
+
+/* --- Diseño Responsivo (Móviles) --- */
+@media (max-width: 768px) {
+    .vintage-navbar {
+        padding: 1rem;
+    }
+    .navbar-search-desktop {
+        display: none;
+    }
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 70px; /* Ajusta según la altura de tu navbar */
+        left: 0;
+        padding: 20px 0;
+        border-top: 1px solid var(--accent-color);
+    }
+    .navbar-links.active {
+        display: flex;
+    }
+    .mobile-search-item {
+        display: list-item;
+        width: 90%;
+        margin: 15px auto;
+    }
+    .navbar-toggle {
+        display: flex; /* Mostrar el botón de hamburguesa en móvil */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+    }
+    .navbar-toggle span {
+        background: white;
+        border-radius: 2px;
+        height: 3px;
+        width: 100%;
+        transition: all var(--transition-speed) ease;
+    }
+    /* Animación de la hamburguesa a X */
+    .navbar-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+    }
+    .navbar-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .navbar-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}

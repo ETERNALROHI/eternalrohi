@@ -60,23 +60,46 @@ const forgotPasswordLink = document.getElementById('forgotPasswordLink');
 
 // --- Funciones de Utilidad para el Modal ---
 function showModal() {
+    const authModal = document.getElementById('authModal');
+    
+    // Le quitamos el display:none para que las transiciones funcionen
     authModal.classList.remove('hidden');
-    // Asegurarse de que el formulario de login es el que se muestra por defecto
+
+    // Forzar al navegador a reconocer el cambio antes de añadir la clase 'visible'
+    // Esto asegura que la animación de entrada siempre se ejecute.
+    setTimeout(() => {
+        authModal.classList.add('visible');
+    }, 10);
+    
+    // ... el resto de tu lógica para mostrar el form de login y limpiar errores ...
     loginForm.classList.remove('hidden');
     registerForm.classList.add('hidden');
-    // Limpiar mensajes de error
     loginErrorMessage.textContent = '';
     registerErrorMessage.textContent = '';
 }
 
 function hideModal() {
-    authModal.classList.add('hidden');
-    // Limpiar campos de formulario al cerrar
-    loginEmailInput.value = '';
-    loginPasswordInput.value = '';
-    registerEmailInput.value = '';
-    registerPasswordInput.value = '';
-    confirmPasswordInput.value = '';
+    const authModal = document.getElementById('authModal');
+    
+    // 1. Quita la clase 'visible' para iniciar la animación de salida
+    authModal.classList.remove('visible');
+
+    // 2. Espera a que la transición de opacidad termine
+    authModal.addEventListener('transitionend', function handleTransitionEnd(event) {
+        // Asegurarse de que el evento es de la opacidad para no dispararse por otros
+        if (event.propertyName !== 'opacity') return;
+
+        // 3. Oculta el modal por completo y limpia los campos
+        authModal.classList.add('hidden'); 
+        loginEmailInput.value = '';
+        loginPasswordInput.value = '';
+        registerEmailInput.value = '';
+        registerPasswordInput.value = '';
+        confirmPasswordInput.value = '';
+
+        // 4. Importante: Remueve el listener para que no se acumule
+        authModal.removeEventListener('transitionend', handleTransitionEnd);
+    }, { once: true }); // { once: true } es una forma moderna de asegurar que solo se ejecute una vez
 }
 
 function displayError(element, message) {
@@ -258,7 +281,7 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         // Usuario está logueado
         console.log("Estado de autenticación: Usuario logueado", user);
-        welcomeMessageSpan.textContent = `¡Hola, ${user.displayName || user.email}!`;
+        welcomeMessageSpan.innerHTML = `¡Hola, <strong>${user.displayName || user.email}</strong>!`;
         welcomeMessageSpan.classList.remove('hidden');
         logoutButton.classList.remove('hidden');
         showLoginModalButton.classList.add('hidden'); // Oculta el botón de "Acceder/Registrarse"
